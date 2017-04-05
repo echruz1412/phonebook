@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nphone: 1
+  status: MyText
+  contact: one
+
+two:
+  nphone: 1
+  status: MyText
+  contact: two

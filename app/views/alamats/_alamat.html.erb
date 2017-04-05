@@ -1,0 +1,6 @@
+  <p>
+    <strong>Address:</strong>
+    <%= alamat.address %>
+  </p>
+
+  <%= link_to "<button>Delete Address</button>".html_safe, [alamat.contact, alamat], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button8' %>

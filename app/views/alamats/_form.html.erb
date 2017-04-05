@@ -1,0 +1,9 @@
+<%= form_for([@contact, @contact.alamats.build]) do |f| %>
+  <p>
+    <%= f.label :Address %><br>
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

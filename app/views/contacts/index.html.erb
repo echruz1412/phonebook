@@ -1,0 +1,26 @@
+<h1>Listing Contacts</h1>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr>
+          <td><%= contact.name %></td>
+          <td><%= link_to "<button>Show</button>".html_safe, contact_path(contact), :class => 'button', :id => 'button4' %>
+          <%= link_to "<button>Edit</button>".html_safe, edit_contact_path(contact), :class => 'button', :id => 'button5' %>
+          <%= link_to "<button>Destroy</button>".html_safe, contact_path(contact),
+            method: :delete,
+            data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button6' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "<button>New contact</button>".html_safe, new_contact_path, :class => 'button', :id => 'button2' %>
+</div>
