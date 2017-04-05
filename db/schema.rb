@@ -12,12 +12,15 @@
 
 ActiveRecord::Schema.define(version: 20170405043501) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "alamats", force: :cascade do |t|
     t.string   "address"
     t.integer  "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_alamats_on_contact_id"
+    t.index ["contact_id"], name: "index_alamats_on_contact_id", using: :btree
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170405043501) do
     t.integer  "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_phones_on_contact_id"
+    t.index ["contact_id"], name: "index_phones_on_contact_id", using: :btree
   end
 
 end
