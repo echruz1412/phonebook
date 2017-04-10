@@ -8,12 +8,13 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-  username: ezra
-  password: azunyan95
 
 development:
   <<: *default
+  host: localhost
   database: my_database_development
+  username: ezra
+  password: azunyan95
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -24,4 +25,7 @@ test:
 
 production:
   <<: *default
-  database: my_database_production
+  host: ec2-54-83-48-188.compute-1.amazonaws.com
+  database: d8h5p9f89895k3
+  username: cvktpdcwvlakmw
+  password: 6b727ebf5ff8ceee4228ede38e9b5783061e85c7a1e70a6a928138058512d94b
