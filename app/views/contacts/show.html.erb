@@ -1,16 +1,18 @@
-<h1><%= @contact.name %></h1>
+<%= render 'phonebook/header' %>
+
+<h1>Name: <%= @contact.name %> </h1>
 
 <h3>Phones</h3>
 <%= render @contact.phones %>
+
+<h4>Add a Phone Number:</h4>
+<%= render 'phones/form' %>
 
 <h3>Address</h3>
 <%= render @contact.alamats %>
 
 <h4>Add a Address:</h4>
 <%= render 'alamats/form' %>
-
-<h4>Add a Phone Number:</h4>
-<%= render 'phones/form' %>
 
 <%= link_to "<button>Edit</button>".html_safe, edit_contact_path(@contact), :class => 'button', :id => 'button5' %>
 <%= link_to "<button>Back</button>".html_safe, contacts_path, :class => 'button', :id => 'button5' %>

@@ -2,7 +2,7 @@ class ContactsController < ApplicationController
 	http_basic_authenticate_with name: "ezra", password: "secret", except: [:index, :show]
 
 	def index
-		@contacts = Contact.all
+		@contacts = Contact.order(:name).page params[:page]
 	end
 
 	def new

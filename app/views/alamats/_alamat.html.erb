@@ -1,6 +1,19 @@
-  <p>
-    <strong>Address:</strong>
-    <%= alamat.address %>
-  </p>
-
-  <%= link_to "<button>Delete Address</button>".html_safe, [alamat.contact, alamat], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button8' %>
+<div class="container-fluid">
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th><strong>No</strong></th>
+					<th><strong>Address</strong></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th><%= alamat.id %></th>
+					<th><%= alamat.address %></th>
+					<th><%= link_to "<button>Delete Address</button>".html_safe, [alamat.contact, alamat], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button8' %></th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
