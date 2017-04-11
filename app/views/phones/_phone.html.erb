@@ -1,22 +1,6 @@
-<div class="container-fluid">
-	<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th><strong>No</strong></th>
-					<th><strong>Type</strong></th>
-					<th><strong>Phone</strong></th>
-					<th><strong>Option</strong></th>
-				</tr>
-			</thead>
-			<tbody>
 				<tr>
 					<th><%= phone.id %></th>
 					<th><%= phone.status %></th>
 					<th><%= phone.nphone %></th>
 					<th><%= link_to "<button>Delete Phone</button>".html_safe, [phone.contact, phone], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button7' %></th>
 				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
