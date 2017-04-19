@@ -27,6 +27,13 @@
         <%= f.password_field :current_password, class: 'form-control' %>
       </div>
     </fieldset>
+    <fieldset>
+      <div class="form-group">
+            <%= f.label :anda_admin %> <br />
+            <%= f.radio_button :admin, true %> Yes <br />
+            <%= f.radio_button :admin, false %> No
+      </div>
+    </fieldset>
     <%= f.submit 'Update', :class => 'button right' %>
   <% end %>
 </div>

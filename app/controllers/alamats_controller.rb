@@ -1,4 +1,6 @@
 class AlamatsController < ApplicationController
+  load_and_authorize_resource
+
   def create
     @contact = Contact.find(params[:contact_id])
     @alamat = @contact.alamats.create(alamat_params)

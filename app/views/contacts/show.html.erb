@@ -5,14 +5,22 @@
 <h3>Phones</h3>
 <%= render 'phones/viewphone'%>
 
+<% if can? :create, @phone %>
 <h4>Add a Phone Number:</h4>
 <%= render 'phones/form' %>
+<% end %>
 
 <h3>Address</h3>
 <%= render 'alamats/viewalamat'%>
 
+<% if can? :create, @alamat %>
 <h4>Add a Address:</h4>
 <%= render 'alamats/form' %>
+<% end %>
 
+<% if can? :update, @contact %>
 <%= link_to "<button>Edit</button>".html_safe, edit_contact_path(@contact), :class => 'button', :id => 'button5' %>
+<% end %>
+
+
 <%= link_to "<button>Back</button>".html_safe, contacts_path, :class => 'button', :id => 'button5' %>

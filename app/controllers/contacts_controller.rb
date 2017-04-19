@@ -1,8 +1,8 @@
 class ContactsController < ApplicationController
-	http_basic_authenticate_with name: "ezra", password: "secret", except: [:index, :show]
-
+	load_and_authorize_resource
+	
 	def index
-		@contacts = Contact.order(:name).page params[:page]
+		@contacts = Contact.order(:name).accessible_by(current_ability).order('created_at DESC').page params[:page]
 	end
 
 	def new
@@ -19,7 +19,7 @@ class ContactsController < ApplicationController
 	    if @contact.update(contact_params)
 	    	redirect_to @contact
 	    else
-	    	render 'edit'
+	    	render :edit
 	    end
 	end
 
@@ -28,18 +28,18 @@ class ContactsController < ApplicationController
 	end
 
 	def create
-		@contact = Contact.new(contact_params)
+		@contact = current_user.contacts.new(contact_params)
 		if @contact.save
 		  redirect_to @contact
 		else
-		  render 'new'
+		  render :new
 		end
 	end
 
 	def destroy
 	   @contact = Contact.find(params[:id])
 	   @contact.destroy
-	 
+
 	   redirect_to contacts_path
 	end
 
