@@ -25,6 +25,8 @@ gem 'rails_layout'
 gem 'kaminari'
 gem 'cancancan'
 gem 'pry'
+gem 'aws-sdk', '~> 2.3'
+gem 'paperclip', git: "git://github.com/thoughtbot/paperclip.git"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

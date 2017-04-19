@@ -14,10 +14,13 @@
     </div>
   <% end %>
 
-  <p>
+  <div class="form-group">
+    <%= f.label :avatar %><br>
+    <%= f.file_field :avatar %><br>
+
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-    <%= f.submit %>
-  </p>
+    <%= f.text_field :name, class: "form-control" %><br>
+
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
 <% end %>

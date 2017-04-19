@@ -1,6 +1,5 @@
 class PhonesController < ApplicationController
 	load_and_authorize_resource
-	http_basic_authenticate_with name: "ezra", password: "admin", only: :destroy
 
 	def create
 		@contact = Contact.find(params[:contact_id])
