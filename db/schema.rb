@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170419041841) do
   end
 
   create_table "phones", force: :cascade do |t|
-    t.integer  "nphone"
+    t.text     "nphone"
     t.text     "status"
     t.integer  "contact_id"
     t.datetime "created_at", null: false

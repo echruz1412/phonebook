@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :contacts do
-  	resources :phones
-  	resources :alamats
+  	resources :phones, only:[:index, :create, :destroy]
+  	resources :alamats, only:[:index, :create, :destroy]
   end
 
   root to: 'phonebook#index'

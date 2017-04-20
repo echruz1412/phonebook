@@ -17,20 +17,16 @@ class ContactsController < ApplicationController
 	    @contact = Contact.find(params[:id])
 	 
 	    if @contact.update(contact_params)
-	    	redirect_to @contact
+	    	redirect_to contacts_path
 	    else
 	    	render :edit
 	    end
 	end
 
-	def show
-		@contact = Contact.find(params[:id])
-	end
-
 	def create
 		@contact = current_user.contacts.new(contact_params)
 		if @contact.save
-		  redirect_to @contact
+		  redirect_to contacts_path
 		else
 		  render :new
 		end

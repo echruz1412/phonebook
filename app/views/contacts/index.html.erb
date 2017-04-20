@@ -13,8 +13,10 @@
     <tbody>
       <% @contacts.each do |contact| %>
         <tr>
-          <td><%= contact.name %></td>
-          <td><%= link_to "<button class='btn btn-success'>Show</button>".html_safe, contact_path(contact), :class => 'button', :id => 'button4' %>
+          <td> <%= image_tag contact.avatar.url(:thumb) %> <%= contact.name %></td>
+          <td><%= link_to "<button class='btn btn-success'>Add Phone</button>".html_safe, contact_phones_path(contact), :class => 'button', :id => 'button4' %>
+
+          <%= link_to "<button class='btn btn-success'>Add Address</button>".html_safe, contact_alamats_path(contact), :class => 'button', :id => 'button10' %>
 
           <% if can? :edit, @contact %>
           <%= link_to "<button class='btn btn-primary'>Edit</button>".html_safe, edit_contact_path(contact), :class => 'button', :id => 'button5' %>
