@@ -8,7 +8,7 @@ class Ability
        can :manage, :all
       elsif user.admin == false
        can [:read, :create], Contact, :user_id => user.id
-       can [:read, :create], [Phone, Alamat]
+       can [:read, :create], [Phone, Alamat], :contact => { :user_id => user.id }
       elsif user.admin == nil
        cannot :manage, :all 
       end

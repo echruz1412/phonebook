@@ -1,5 +1,5 @@
 class AlamatsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource 
 
   def index
     @contact = Contact.find(params[:contact_id])

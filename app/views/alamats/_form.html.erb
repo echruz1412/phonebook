@@ -1,7 +1,7 @@
 <%= form_for([@contact, @contact.alamats.build]) do |f| %>
   <p>
     <%= f.label :Address %><br>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, required: true %>
   </p>
   <p>
     <%= f.submit %>

@@ -1,7 +1,7 @@
 <%= form_for([@contact, @contact.phones.build]) do |f| %>
   <p>
     <%= f.label :phone_number %><br>
-    <%= f.number_field :nphone %>
+    <%= f.number_field :nphone, required: true %>
   </p>
   <p>
     <%= f.label :type %><br>
