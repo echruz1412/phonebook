@@ -1,4 +1,4 @@
 class Phone < ApplicationRecord
   belongs_to :contact
-  validates :nphone, presence: true
+  validates :nphone, format: { with: /\A[0][1-9]+\z/ }, length: { minimum: 12 }, presence: true
 end
