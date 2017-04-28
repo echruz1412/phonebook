@@ -7,8 +7,8 @@ class Ability
       if user.admin == true
        can :manage, :all
       elsif user.admin == false
-       can [:read, :create], Contact, :user_id => user.id
-       can [:index, :create, :update], [Phone, Alamat], :contact => {:user_id => user.id}
+       can [:read, :create, :update, :destroy], Contact, :user_id => user.id
+       can [:index, :create, :update, :destroy], [Phone, Alamat], :contact => {:user_id => user.id}
       elsif user.admin == nil
        cannot :manage, :all 
       end

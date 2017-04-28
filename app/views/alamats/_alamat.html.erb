@@ -1,6 +1,8 @@
-<tr>
-	<th><%= alamat.id %></th>
-	<th><%= alamat.address %></th>
-	<th><button type="button" class="btn btn-primary" onclick='edit_alamat("<%= alamat.id %>")'>Edit Address</button></th>
-	<th><%= link_to "<button>Delete Address</button>".html_safe, [alamat.contact, alamat], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button8' %></th>
-</tr>
+<% @contact.alamats.each_with_index do |alamat, index|%>
+	<tr>
+		<th><%= index.next %></th>
+		<th><%= alamat.address %></th>
+		<th><button type="button" class="btn btn-primary" onclick='edit_alamat("<%= alamat.id %>")'>Edit Address</button></th>
+		<th><%= link_to "<button>Delete Address</button>".html_safe, [alamat.contact, alamat], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button8' %></th>
+	</tr>
+<% end %>

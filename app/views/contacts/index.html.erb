@@ -18,11 +18,11 @@
 
           <%= link_to "<button class='btn btn-success'>Add Address</button>".html_safe, contact_alamats_path(contact), :class => 'button', :id => 'button10' %>
 
-          <% if can? :edit, @contact %>
+          <% if can? :edit, contact %>
           <%= link_to "<button class='btn btn-primary'>Edit</button>".html_safe, edit_contact_path(contact), :class => 'button', :id => 'button5' %>
           <% end %>
 
-          <% if can? :destroy, @contact %>
+          <% if can? :destroy, contact %>
           <%= link_to "<button class='btn btn-danger'>Destroy</button>".html_safe, contact_path(contact),
             method: :delete,
             data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button6' %>
@@ -32,8 +32,12 @@
       <% end %>
     </tbody>
   </table>
+</div>
 
-  <%= link_to "<button>New contact</button>".html_safe, new_contact_path, :class => 'button', :id => 'button2' %>
+<div>
+<%= link_to "<button class='btn btn-info'>New contact</button>".html_safe, new_contact_path, :class => 'button', :id => 'button2' %>
+</div>
 
-  <%= paginate @contacts %>
+<div align="center">
+<%= paginate @contacts %>
 </div>

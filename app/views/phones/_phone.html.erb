@@ -1,7 +1,9 @@
+				<% @contact.phones.each_with_index do |phone, index| %>
 				<tr>
-					<th><%= phone.id %></th>
+					<th><%= index.next %></th>
 					<th><%= phone.status %></th>
 					<th><%= phone.nphone %></th>
 					<th><button type="button" class="btn btn-primary" onclick='edit_phone("<%= phone.id %>")'>Edit Phone</button></th>
 					<th><%= link_to "<button>Delete</button>".html_safe, [phone.contact, phone], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button7' %></th>
 				</tr>
+				<% end %>
