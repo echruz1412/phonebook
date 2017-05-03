@@ -37,6 +37,8 @@
 
 <button type="button" class="btn btn-info" onclick="new_user()">Add User</button>
 
+<%= link_to "<button class='btn btn-danger'>Back</button>".html_safe, root_path , :class => 'button', :id => 'button7' %>
+
 <script>
 	function new_user(){
 		$.get("<%= new_member_path %>",{},null,"script");
