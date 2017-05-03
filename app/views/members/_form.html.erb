@@ -1,0 +1,29 @@
+<div class="modal-body">
+<%= form_for @member, url: members_path, method: :post do |f| %>
+  <form>
+    <div class="form-group">
+      <%= f.label :email, for:'email' %><br />
+      <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder:'Enter email', id:'email' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, for:'pwd' %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder:'Enter password', id:'pwd' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, for:'pwd_confirm' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder:'Enter confirmation password', id:'pwd_confirm' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :admin %> <br />
+      <%= f.radio_button :admin, true %> Yes <br />
+      <%= f.radio_button :admin, false %> No
+    </div>
+  <div class="modal-footer">
+	<%= f.submit class: 'btn btn-success' %>
+	<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+  </div>
+  <% end %>
+</div>

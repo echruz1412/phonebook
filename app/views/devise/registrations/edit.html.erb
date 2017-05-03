@@ -32,11 +32,13 @@
       </div>
     </fieldset>
 
+    <% if can? :update, @user %>
     <div class="form-group">
       <%= f.label :anda_admin %> <br />
       <%= f.radio_button :admin, true %> Yes <br />
       <%= f.radio_button :admin, false %> No
     </div>
+    <% end %>
 
     <%= f.submit 'Update', :class => 'btn btn-default' %>
   </form>

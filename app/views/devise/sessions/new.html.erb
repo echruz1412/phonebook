@@ -7,7 +7,7 @@
   <form>
     <div class="form-group">
       <%- if devise_mapping.registerable? %>
-        <%= link_to 'Sign up', new_registration_path(resource_name), class: 'right'  %>
+        <%= link_to 'Sign up', new_user_registration_path(resource_name), class: 'right'  %>
       <% end -%>
       <%= f.label :email, for: 'email' %>
       <%= f.email_field :email, :autofocus => true, class: 'form-control', type:'email', placeholder:'Enter Email', id:'email' %>

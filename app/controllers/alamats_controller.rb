@@ -17,8 +17,10 @@ class AlamatsController < ApplicationController
     @alamat = @contact.alamats.find(params[:id])
    
       if @alamat.update(alamat_params)
+        flash[:success] = "Update Address Success"
         redirect_to contact_alamats_path(@contact)
       else
+        flash[:error] = "Update Address Fail"
         render :edit
       end
   end
@@ -31,6 +33,7 @@ class AlamatsController < ApplicationController
   def create
     @contact = Contact.find(params[:contact_id])
     @alamat = @contact.alamats.create(alamat_params)
+    flash[:success] = "Create Address Success"
     redirect_to contact_alamats_path(@contact)
   end
 
@@ -38,6 +41,7 @@ class AlamatsController < ApplicationController
     @contact = Contact.find(params[:contact_id])
     @alamat = @contact.alamats.find(params[:id])
     @alamat.destroy
+    flash[:success] = "Delete Address Success"
     redirect_to contact_alamats_path(@contact)
   end
 

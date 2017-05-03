@@ -1,0 +1,47 @@
+<%= render 'phonebook/header' %>
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Admin</th>
+        <th>Created At</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @members.each do |member| %>
+      	<tr>
+			<td><%= member.email %></td>
+			<td><%= member.admin %></td>
+			<td><%= member.created_at %></td>
+			<td>
+          <button type="button" class="btn btn-info" onclick='edit_user("<%= member.id %>")'>Edit</button>
+
+          <%= link_to "<button class='btn btn-danger'>Destroy</button>".html_safe, member_path(member),
+            method: :delete,
+            data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button6' %>
+			</td>
+		</tr>
+	<% end %>
+    </tbody>
+  </table>
+</div>
+
+<div id="show_form"></div>
+
+<button type="button" class="btn btn-info" onclick="new_user()">Add User</button>
+
+<script>
+	function new_user(){
+		$.get("<%= new_member_path %>",{},null,"script");
+	}
+  function edit_user(id){
+    $.get("/members/"+id+"/edit",{},null,"script");
+  }
+</script>
