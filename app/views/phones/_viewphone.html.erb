@@ -10,7 +10,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%= render "phones/phone" %>
+				<% @contact.phones.order(:nphone).page(params[:page]).per(5).each_with_index do |phone, index| %>
+				<tr>
+					<td><%= index.next %></td>
+					<td><%= phone.status %></td>
+					<td><%= phone.nphone %></td>
+					<td><button type="button" class="btn btn-success" onclick='edit_phone("<%= phone.id %>")'>Edit</button>
+					<%= link_to "<button class='btn btn-danger'>Delete</button>".html_safe, [phone.contact, phone], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button', :id => 'button7' %></td>
+				</tr>
+				<% end %>
 			</tbody>
 		</table>
 	</div>

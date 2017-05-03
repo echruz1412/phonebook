@@ -43,9 +43,14 @@ class MembersController < ApplicationController
 
 	def destroy
 	   @member = User.find(params[:id])
-	   @member.destroy
 
-	   flash[:success] = "Delete User Success"
+	   if current_user == @member
+	   	flash[:danger] = "User Online"
+	   else
+	   	@member.destroy
+	   	flash[:success] = "Delete User Success"
+	   end
+
 	   redirect_to members_path
 	end
 

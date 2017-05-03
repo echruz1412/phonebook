@@ -18,7 +18,8 @@
     <%= f.label :avatar %><br>
     <%= f.file_field :avatar %><br>
 
-    <button type="button" class="btn btn-info" onclick="new_phone()">Add Phone</button>class: "form-control", minlength: 6, maxlength:25 %><br>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control", minlength: 6, maxlength:25 %><br>
 
     <%= f.submit class: "btn btn-success" %>
     <%= link_to "<button class='btn btn-danger'>Back</button>".html_safe, contacts_path, :class => 'button', :id => 'button3' %>

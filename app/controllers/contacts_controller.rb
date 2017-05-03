@@ -2,7 +2,7 @@ class ContactsController < ApplicationController
 	load_and_authorize_resource 
 	
 	def index
-		@contacts = Contact.order(:name).accessible_by(current_ability).order('created_at DESC').page params[:page]
+		@contacts = Contact.order(:name).accessible_by(current_ability).page(params[:page]).per(5)
 	end
 
 	def new

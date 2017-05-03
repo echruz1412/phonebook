@@ -27,7 +27,7 @@ class AlamatsController < ApplicationController
 
   def index
     @contact = Contact.find(params[:contact_id])
-    @alamats = @contact.alamats.all
+    @alamats = @contact.alamats.order(:address).page(params[:page]).per(5)
   end
 
   def create

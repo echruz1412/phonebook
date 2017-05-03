@@ -19,7 +19,7 @@
       	<tr>
 			<td><%= member.email %></td>
 			<td><%= member.admin %></td>
-			<td><%= member.created_at %></td>
+			<td><%= member.created_at.strftime("%A, %b %-d %Y, %T WIB") %></td>
 			<td>
           <button type="button" class="btn btn-info" onclick='edit_user("<%= member.id %>")'>Edit</button>
 
