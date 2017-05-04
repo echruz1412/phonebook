@@ -14,9 +14,14 @@ class PhonesController < ApplicationController
 
 	def create
 		@contact = Contact.find(params[:contact_id])
-		@phone = @contact.phones.create(phone_params)
-		flash[:success] = "Create Phone Success"
-		redirect_to contact_phones_path(@contact)
+		@phone = @contact.phones.new(phone_params)
+		if @phone.save
+		  flash[:success] = "Create Phone Success"
+		  redirect_to contact_phones_path(@contact)
+		else
+		  flash[:danger] = "Create Phone Fail"
+	      render "_new.html.erb"
+		end
 	end
 
 	def edit
@@ -27,13 +32,12 @@ class PhonesController < ApplicationController
 	def update
 		@contact = Contact.find(params[:contact_id])
 		@phone = @contact.phones.find(params[:id])
-	 
-	    if @phone.update(phone_params)
+	 	if @phone.update(phone_params)
 	    	flash[:success] = "Update Phone Success"
 	    	redirect_to contact_phones_path(@contact)
 	    else
-	    	flash[:error] = "Update Phone Fail"
-	    	render :edit
+	    	flash[:danger] = "Update Phone Fail"
+	    	render "_new.html.erb"
 	    end
 	end
 

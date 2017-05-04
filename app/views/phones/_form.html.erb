@@ -1,4 +1,7 @@
 <div class="modal-body">
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
   <%= form_for([@contact, @phone]) do |f| %>
     <p>
       <%= f.label :phone_number %><br>
@@ -10,7 +13,7 @@
     </p>
     <div class="modal-footer">
       <%= f.submit class: "btn btn-success" %>
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="window.location.href='/contacts/<%= @contact.id %>/phones'">Close</button>
     </div>
     <% end %>
 </div>

@@ -15,12 +15,11 @@ class ContactsController < ApplicationController
 
 	def update
 	    @contact = Contact.find(params[:id])
-	 
-	    if @contact.update(contact_params)
+		if @contact.update(contact_params)
 	    	flash[:success] = "Update Contact Success"
 	    	redirect_to contacts_path 
 	    else
-	    	flash[:error] = "Update Contact Failed"
+	    	flash[:danger] = "Update Contact Failed"
 	    	render :edit
 	    end
 	end
@@ -31,7 +30,7 @@ class ContactsController < ApplicationController
 		  flash[:success] = "Create Contact Success"
 		  redirect_to contacts_path
 		else
-		  flash[:error] = "Create Contact Failed"
+		  flash[:danger] = "Create Contact Failed"
 		  render :new
 		end
 	end

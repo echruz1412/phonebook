@@ -11,6 +11,8 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Phone</th>
+        <th>Address</th>
         <th>Option</th>
       </tr>
     </thead>
@@ -18,6 +20,8 @@
       <% @contacts.each do |contact| %>
         <tr>
           <td> <%= image_tag contact.avatar.url(:thumb) %> <%= contact.name %></td>
+          <td><%= contact.phones.count %></td>
+          <td><%= contact.alamats.count %></td>
           <td><%= link_to "<button class='btn btn-success'>Add Phone</button>".html_safe, contact_phones_path(contact), :class => 'button', :id => 'button4' %>
 
           <%= link_to "<button class='btn btn-success'>Add Address</button>".html_safe, contact_alamats_path(contact), :class => 'button', :id => 'button10' %>
