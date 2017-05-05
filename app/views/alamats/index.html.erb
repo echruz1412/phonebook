@@ -4,6 +4,11 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
+<%= form_tag(contact_alamats_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Phones" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
 <%= render 'alamats/viewalamat'%>
 
 <button type="button" class="btn btn-info" onclick="new_alamat()">Add Address</button>

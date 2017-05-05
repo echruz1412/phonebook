@@ -6,4 +6,15 @@ class Contact < ApplicationRecord
 
 	has_attached_file :avatar, styles: { medium: "250x250>", thumb: "50x50>"}, default_url: "/images/:style/missing.png"
   	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
+   def self.search(search)
+	where('lower(name) LIKE ? OR 
+	 	upper(name) LIKE ? OR 
+	 	name LIKE ? OR 
+	 	phones.nphone LIKE ? OR 
+	 	alamats.address LIKE ? OR
+	 	lower(alamats.address) LIKE ? OR
+	 	upper(alamats.address) LIKE ?', 
+	 	"%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%") 
+   end
 end

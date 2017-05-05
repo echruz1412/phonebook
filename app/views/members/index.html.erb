@@ -4,6 +4,11 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
+<%= form_tag(members_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Contacts" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
 <div class="table-responsive">
   <table class="table">
     <thead>
@@ -38,6 +43,8 @@
 <button type="button" class="btn btn-info" onclick="new_user()">Add User</button>
 
 <%= link_to "<button class='btn btn-danger'>Back</button>".html_safe, root_path , :class => 'button', :id => 'button7' %>
+
+<%= paginate @members %>
 
 <script>
 	function new_user(){

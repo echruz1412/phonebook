@@ -4,7 +4,10 @@
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<h1>Listing Contacts</h1>
+<%= form_tag(contacts_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Contacts" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
 
 <div class="table-responsive">
   <table class="table">

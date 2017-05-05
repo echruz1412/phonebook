@@ -9,7 +9,11 @@ class PhonesController < ApplicationController
 
 	def index
 		@contact = Contact.find(params[:contact_id])
-		@phones = @contact.phones.order(:nphone).page(params[:page]).per(5)
+		if params[:search]
+			@phones = @contact.phones.search(params[:search]).order(:nphone).page(params[:page]).per(5)
+		else
+			@phones = @contact.phones.order(:nphone).page(params[:page]).per(5)
+		end
 	end
 
 	def create

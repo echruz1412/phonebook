@@ -2,7 +2,23 @@
   <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
+  
   <%= form_for([@contact, @phone]) do |f| %>
+
+  <% if @phone.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@phone.errors.count, "error") %> prohibited
+        this phone from being saved:
+      </h2>
+      <ul>
+        <% @phone.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
     <p>
       <%= f.label :phone_number %><br>
       <%= f.text_field :nphone, required: true, pattern: '([0][3,8][1][1-9])\w+' %>

@@ -2,7 +2,11 @@ class MembersController < ApplicationController
 	load_and_authorize_resource :class => User
 	
 	def index
-		@members = User.all
+		if params[:search]
+			@members = User.search(params[:search]).page(params[:page]).per(5)
+		else
+			@members = User.all.page(params[:page]).per(5)
+		end
 	end
 
 	def new
@@ -15,8 +19,8 @@ class MembersController < ApplicationController
 		  flash[:success] = "Create User Success"
 		  redirect_to members_path
 		else
-		  flash[:error] = "Create User Failed"
-		  render :new
+		  flash[:danger] = "Create User Failed"
+		  render "_new.html.erb"
 		end
 	end
 
@@ -36,8 +40,8 @@ class MembersController < ApplicationController
 	    	flash[:success] = "Update User Success"
 	    	redirect_to members_path 
 	    else
-	    	flash[:error] = "Update User Failed"
-	    	render :edit
+	    	flash[:danger] = "Update User Failed"
+	    	render "_edit.html.erb"
 	    end
 	end
 

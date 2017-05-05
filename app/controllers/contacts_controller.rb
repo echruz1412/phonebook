@@ -2,7 +2,12 @@ class ContactsController < ApplicationController
 	load_and_authorize_resource 
 	
 	def index
-		@contacts = Contact.order(:name).accessible_by(current_ability).page(params[:page]).per(5)
+		if params[:search]
+			@contacts = Contact.joins("LEFT JOIN phones ON phones.contact_id = contacts.id LEFT JOIN alamats ON alamats.contact_id = contacts.id").distinct.search(params[:search]).order(:name)
+			.accessible_by(current_ability).page(params[:page]).per(5)	
+		else
+			@contacts = Contact.order(:name).accessible_by(current_ability).page(params[:page]).per(5)
+		end
 	end
 
 	def new

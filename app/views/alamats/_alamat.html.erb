@@ -1,4 +1,4 @@
-<% @contact.alamats.order(:address).page(params[:page]).per(5).each_with_index do |alamat, index|%>
+<% @contact.alamats.search(params[:search]).order(:address).page(params[:page]).per(5).each_with_index do |alamat, index|%>
 	<tr>
 		<td><%= index.next %></td>
 		<td><%= alamat.address %></td>
