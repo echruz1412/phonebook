@@ -19,7 +19,6 @@ class ContactsController < ApplicationController
 	end
 
 	def update
-		binding.pry
 	    @contact = Contact.find(params[:id])
 		if @contact.update(contact_params)
 	    	flash[:success] = "Update Contact Success"
