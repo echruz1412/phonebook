@@ -19,6 +19,7 @@ class ContactsController < ApplicationController
 	end
 
 	def update
+		binding.pry
 	    @contact = Contact.find(params[:id])
 		if @contact.update(contact_params)
 	    	flash[:success] = "Update Contact Success"
@@ -50,6 +51,6 @@ class ContactsController < ApplicationController
 
 	private
 		def contact_params
-			params.require(:contact).permit(:name, :avatar)
+			params.require(:contact).permit(:name, :avatar, phones_attributes: [:id, :nphone, :status, :_destroy], alamats_attributes: [:id, :address, :_destroy])
 		end
 end

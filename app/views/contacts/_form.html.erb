@@ -1,4 +1,4 @@
-<%= form_for @contact do |f| %>
+  <%= form_for @contact do |f| %>
 
   <% if @contact.errors.any? %>
     <div id="error_explanation">
@@ -14,14 +14,104 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :avatar %><br>
-    <%= f.file_field :avatar %><br>
+  <div><a class="btn btn-info" onclick="add_phone();">Add Phone</a>
+       <a class="btn btn-info" onclick="add_address();">Add Address</a></div>
 
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: "form-control", minlength: 6, maxlength:25 %><br>
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Avatar</th>
+        </tr>
+      </thead>
+      <% indexp = 0 %><% indexa = 0 %>
+      <div class="form-group">
+      <tbody>
+        <tr>
+          <td><%= f.file_field :avatar %></td></tr><br>
+          <tr><th>Name</th></tr><tr>
+          <td><%= f.text_field :name, minlength: 6, maxlength:25 %></td></tr>
+      </tbody>
 
-    <%= f.submit class: "btn btn-success" %>
-    <%= link_to "<button class='btn btn-danger'>Back</button>".html_safe, contacts_path, :class => 'button', :id => 'button3' %>
+      <tbody id="add_phone">
+      <tr><th>Phone</th></tr>
+      <%= f.fields_for :phones do |phone| %>
+          <tr id="phone_<%= indexp %>">
+            <td>
+                <%= phone.text_field :nphone, required: true, pattern: '([0][3,8][1][1-9])\w+' %>
+                <%= phone.label :type %>
+                <%= phone.select :status, options_for_select([["Home"],["Fax"],["Mobile"]]) %>
+                <a onclick="delete_phone(<%= indexp %>);" class="btn btn-danger">Delete</a>
+            </td>
+              <% indexp = indexp + 1 %>
+          </tr>
+          <% end %>
+        </tbody>
+        <tbody id="add_address">
+          <tr><th>Address</th></tr>
+          <%= f.fields_for :alamats do |alamat| %>
+          <tr id= "address_<%= indexa %>">
+          <td>
+               <%= alamat.text_field :address, required: true, minlength: 15, maxlength:30 %>
+               <a onclick="delete_address(<%= indexa %>);" class="btn btn-danger">Delete</a>
+            </td><% indexa = indexa + 1 %></tr><% end %>
+      </tbody>
+      </div>
+    </table>
   </div>
+
+<%= f.submit class: "btn btn-success" %>
+<%= link_to "<button class='btn btn-danger'>Back</button>".html_safe, contacts_path, :class => 'button', :id => 'button3' %>
+
 <% end %>
+
+<script>
+
+  id_phone = <%= @contact.phones.count %>
+  id_address = <%= @contact.alamats.count %>
+
+  function add_phone(){
+
+      id_phone = id_phone + 1;
+
+      data = "<tr id='phone_"+id_phone+"'><td>"
+
+      data += "<input pattern= '([0][3,8][1][1-9])\\w+' type='text' name='contact[phones_attributes]["+id_phone+"][nphone]' id='contact_phones_attributes_"+id_phone+"_nphone' />"
+
+      data += " <label for='contact_phones_attributes_"+id_phone+"_type'>Type</label> "
+
+      data += "<select name='contact[phones_attributes]["+id_phone+"][status]' id='contact_phones_attributes_"+id_phone+"_status'><option value='Home'>Home</option><option value='Fax'>Fax</option><option value='Mobile'>Mobile</option></select>"
+
+      data += " <a onclick='delete_phone("+id_phone+");' class='btn btn-danger'>Delete</a></td></tr>"
+
+    $("#add_phone").append(data).html_safe;
+  }
+
+  function delete_phone(id){
+    data = "<input type='hidden' value=1 name='contact[phones_attributes]["+id+"][_destroy]'>"
+    $("#add_phone").append(data);
+    $("#phone_"+id).remove();
+  }
+
+  function add_address(){
+
+    id_address = id_address + 1;
+
+    data = "<tr id='address_"+id_address+"'><td>"
+
+    data += "<input required='required' minlength='15' maxlength='30' size='30' type='text' value= '' name='contact[alamats_attributes]["+id_address+"][address]' id='contact_alamats_attributes_"+id_address+"_address' />"
+
+    data += " <a onclick='delete_address("+id_address+");' class='btn btn-danger'>Delete</a></td></tr>"
+
+    $("#add_address").append(data).html_safe;
+  }
+
+  function delete_address(id){
+    data = "<input type='hidden' value=1 name='contact[alamats_attributes]["+id+"][_destroy]'>"
+    $("#add_address").append(data);
+    $("#address_"+id).remove();
+  }
+
+  add_phone()
+  add_address()
+</script>

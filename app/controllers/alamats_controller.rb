@@ -13,6 +13,7 @@ class AlamatsController < ApplicationController
   end
 
   def update
+    binding.pry
     @contact = Contact.find(params[:contact_id])
     @alamat = @contact.alamats.find(params[:id])
    
