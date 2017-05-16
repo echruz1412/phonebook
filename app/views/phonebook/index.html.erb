@@ -1,11 +1,10 @@
-<%= render 'header' %>
+<div class="jumbotron text-center" style="background-color: white; min-height: 85%; padding-top: 22%; background-image: url(/assets/meeting.jpg); margin-bottom: 0;">
 
-<div class="jumbotron">
-  <div class="container text-center">
-    <%= link_to "<button class='btn btn-primary'>GOTO CONTACTS</button>".html_safe, contacts_path, :class => "button", :id => "button1" %>
+<% if can? :show, @contact %>
+<%= link_to "<button class='btn btn-primary'>GOTO CONTACTS</button>".html_safe, contacts_path, :class => "button", :id => "button1" %>
+<% end %>
 
-    <%= link_to "<button class='btn btn-primary'>GOTO USERS</button>".html_safe, members_path, :class => "button", :id => "button20" %>
-  </div>
+<% if can? :show, @user %>
+<%= link_to "<button class='btn btn-primary'>GOTO USERS</button>".html_safe, members_path, :class => "button", :id => "button20" %>
+<% end %>
 </div>
-
-

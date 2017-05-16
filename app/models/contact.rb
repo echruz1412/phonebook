@@ -3,6 +3,7 @@ class Contact < ApplicationRecord
 	has_many :phones, dependent: :destroy
 	has_many :alamats, dependent: :destroy
 	validates :name, length: { minimum: 6, maximum: 25 }, presence: true, uniqueness: true
+	before_save :downcase_fields
 
 	accepts_nested_attributes_for :phones, allow_destroy: true
 	accepts_nested_attributes_for :alamats, allow_destroy: true
@@ -19,5 +20,9 @@ class Contact < ApplicationRecord
 	 	lower(alamats.address) LIKE ? OR
 	 	upper(alamats.address) LIKE ?', 
 	 	"%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%") 
+   end
+
+   def downcase_fields
+  	self.name.downcase!
    end
 end

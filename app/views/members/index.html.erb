@@ -1,5 +1,7 @@
 <%= render 'phonebook/header' %>
 
+<div style="padding-top: 15px;">
+
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
@@ -45,6 +47,8 @@
 <%= link_to "<button class='btn btn-danger'>Back</button>".html_safe, root_path , :class => 'button', :id => 'button7' %>
 
 <%= paginate @members %>
+
+</div>
 
 <script>
 	function new_user(){
