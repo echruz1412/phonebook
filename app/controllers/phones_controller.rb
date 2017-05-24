@@ -34,7 +34,6 @@ class PhonesController < ApplicationController
 	end
 
 	def update
-		binding.pry
 		@contact = Contact.find(params[:contact_id])
 		@phone = @contact.phones.find(params[:id])
 	 	if @phone.update(phone_params)

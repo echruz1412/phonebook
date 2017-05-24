@@ -1,28 +1,34 @@
-<div class="container authform">
+<div class="login">
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:role => 'form'}) do |f| %>
-  <h2>Sign in</h2>
-  <%= devise_error_messages! %>
-  <form>
-    <div class="form-group">
-      <%- if devise_mapping.registerable? %>
-        <%= link_to 'Sign up', new_user_registration_path(resource_name), class: 'right'  %>
-      <% end -%>
-      <%= f.label :email, for: 'email' %>
-      <%= f.email_field :email, :autofocus => true, class: 'form-control', type:'email', placeholder:'Enter Email', id:'email' %>
+    <h1><a href="/">Phonebook </a></h1>
+    <div class="login-bottom">
+      <h2>Login</h2>
+      <form>
+      <div class="col-md-6">
+        <div class="login-mail">
+          <%= f.email_field :email, :autofocus => true, type:'text', placeholder:'Email', id:'email' %>
+          <span class="fa fa-envelope"></span>
+        </div>
+        <div class="login-mail">
+        <%= f.password_field :password, type:'password', placeholder:'Password', id:'pwd' %>
+          <span class="fa fa-lock"></span>
+        </div>
+           <a class="news-letter " href="/users/password/new">
+             <%- if devise_mapping.recoverable? %>
+             <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Forget Password</label><% end %>
+           </a>
+      </div>
+      <div class="col-md-6 login-do">
+        <label class="hvr-shutter-in-horizontal login-sub">
+          <input type="submit" value="Login">
+          </label>
+          <%- if devise_mapping.registerable? %>
+          <p>Do not have an account?</p>
+        <a href="/users/sign_up" class="hvr-shutter-in-horizontal">Signup</a><% end %>
+      </div>
+      
+      <div class="clearfix"> </div>
+      </form>
     </div>
-    <div class="form-group">
-      <%- if devise_mapping.recoverable? %>
-        <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
-      <% end -%>
-      <%= f.label :password, for:'pwd' %>
-      <%= f.password_field :password, class: 'form-control', type:'password', placeholder:'Enter password', id:'pwd' %>
-    </div>
-    <% if devise_mapping.rememberable? -%>
-    <div class="checkbox">
-      <label><%= f.check_box :remember_me %> Remember me</label>
-    </div>
-    <% end -%>
-    <%= f.submit 'Sign in', :class => 'btn btn-default' %>
-  </form>
-  <% end %>
-</div>
+    <% end %>
+  </div>

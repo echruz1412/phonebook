@@ -1,33 +1,35 @@
-<div class="container">
+<div class="login">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <h2>Sign up</h2>
-  <%= devise_error_messages! %>
-  <form>
-    <div class="form-group">
-      <%= f.label :email, for:'email' %><br />
-      <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder:'Enter email', id:'email' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password, for:'pwd' %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder:'Enter password', id:'pwd' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation, for:'pwd_confirm' %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder:'Enter confirmation password', id:'pwd_confirm' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :admin %> <br />
-      <%= f.radio_button :admin, true %> Yes <br />
-      <%= f.radio_button :admin, false %> No
-    </div>
+    <h1><a href="/">Phonebook </a></h1>
+    <div class="login-bottom">
+      <h2>Register</h2>
+      <%= devise_error_messages! %>
 
-    <%= f.submit "Sign up", class: 'btn btn-default' %>
-    <%= render "devise/shared/links" %>
-  </form>
-  <% end %>
-</div>
-
-
+      <div class="col-md-6">
+        <div class="login-mail">
+          <%= f.email_field :email, type:"text", autofocus: true, placeholder:'Email', id:'email'%>
+          <i class="fa fa-envelope"></i>
+        </div>
+        <div class="login-mail">
+          <%= f.password_field :password, autocomplete: "off", placeholder:'Password', id:'pwd' %>
+          <i class="fa fa-lock"></i>
+        </div>
+        <div class="login-mail">
+          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder:'Repeated Password', id:'pwd_confirm' %>
+          <i class="fa fa-lock"></i>
+        </div>
+        <p>Admin</p>
+        <%= f.radio_button :admin, true %> Yes
+        <%= f.radio_button :admin, false %> No
+      </div>
+      <div class="col-md-6 login-do">
+        <label class="hvr-shutter-in-horizontal login-sub">
+          <input type="submit" value="Submit">
+          </label>
+          <p>Already register</p>
+        <a href="/users/sign_in" class="hvr-shutter-in-horizontal">Login</a>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+    <% end %>
+  </div>
