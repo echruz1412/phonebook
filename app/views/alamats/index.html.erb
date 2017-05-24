@@ -3,7 +3,7 @@
 <% end %>
 
 <%= form_tag(contact_alamats_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Phones" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Address" %>
     <%= submit_tag "Search", :name => nil %>
 <% end %>
 

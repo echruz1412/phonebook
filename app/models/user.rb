@@ -8,7 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable  
 
   def self.search(search)
-  	search.downcase!
+  search.downcase!
 	where('lower(email) LIKE ? OR
  	upper(email) LIKE ?', 
  	"%#{search}%", "%#{search}%") 

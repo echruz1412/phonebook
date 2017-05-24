@@ -12,6 +12,7 @@ class Contact < ApplicationRecord
   	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
    def self.search(search)
+   	search.downcase!
 	where('lower(name) LIKE ? OR 
 	 	upper(name) LIKE ? OR 
 	 	name LIKE ? OR 
@@ -22,7 +23,7 @@ class Contact < ApplicationRecord
 	 	"%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%") 
    end
 
-   def downcase_fields
+   def downcase_fields(search)
   	self.name.downcase!
    end
 end
